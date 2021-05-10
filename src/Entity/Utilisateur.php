@@ -3,8 +3,12 @@
 namespace App\Entity;
 
 use App\Repository\UtilisateurRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Validator\Mapping\ClassMetadata;
 
 /**
  * @ORM\Entity(repositoryClass=UtilisateurRepository::class)
@@ -33,6 +37,16 @@ class Utilisateur implements UserInterface
      * @ORM\Column(type="string")
      */
     private $password;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Commentaire::class, mappedBy="id_utilisateur", orphanRemoval=true)
+     */
+    private $commentaires;
+
+    public function __construct()
+    {
+        $this->commentaires = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -117,5 +131,42 @@ class Utilisateur implements UserInterface
     public function __toString()
     {
         return $this->email;
+    }
+    public static function loadValidatorMetadata(ClassMetadata $metadata)
+    {
+        $metadata->addPropertyConstraint('email', new Assert\Email([
+            'message' => 'Cette valeur "{{ value }}" n’est pas une adresse électronique valide.',
+            'checkMX' => true,
+        ]));
+    }
+
+    /**
+     * @return Collection|Commentaire[]
+     */
+    public function getCommentaires(): Collection
+    {
+        return $this->commentaires;
+    }
+
+    public function addCommentaire(Commentaire $commentaire): self
+    {
+        if (!$this->commentaires->contains($commentaire)) {
+            $this->commentaires[] = $commentaire;
+            $commentaire->setIdUtilisateur($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCommentaire(Commentaire $commentaire): self
+    {
+        if ($this->commentaires->removeElement($commentaire)) {
+            // set the owning side to null (unless already changed)
+            if ($commentaire->getIdUtilisateur() === $this) {
+                $commentaire->setIdUtilisateur(null);
+            }
+        }
+
+        return $this;
     }
 }

@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\MotCleRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -21,6 +23,16 @@ class MotCle
      * @ORM\Column(type="string", length=50, unique=true)
      */
     private $mot_cle;
+
+    /**
+     * @ORM\ManyToMany(targetEntity=Article::class, mappedBy="id_motcle")
+     */
+    private $articles;
+
+    public function __construct()
+    {
+        $this->articles = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -41,5 +53,32 @@ class MotCle
     public function __toString()
     {
         return $this->mot_cle;
+    }
+
+    /**
+     * @return Collection|Article[]
+     */
+    public function getArticles(): Collection
+    {
+        return $this->articles;
+    }
+
+    public function addArticle(Article $article): self
+    {
+        if (!$this->articles->contains($article)) {
+            $this->articles[] = $article;
+            $article->addIdMotcle($this);
+        }
+
+        return $this;
+    }
+
+    public function removeArticle(Article $article): self
+    {
+        if ($this->articles->removeElement($article)) {
+            $article->removeIdMotcle($this);
+        }
+
+        return $this;
     }
 }

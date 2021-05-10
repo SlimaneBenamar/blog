@@ -27,6 +27,18 @@ class Commentaire
      */
     private $date_creation;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Article::class, inversedBy="id_commentaire")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $article;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Utilisateur::class, inversedBy="commentaires")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $id_utilisateur;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -58,5 +70,29 @@ class Commentaire
     public function __toString()
     {
         return $this->contenu;
+    }
+
+    public function getArticle(): ?Article
+    {
+        return $this->article;
+    }
+
+    public function setArticle(?Article $article): self
+    {
+        $this->article = $article;
+
+        return $this;
+    }
+
+    public function getIdUtilisateur(): ?Utilisateur
+    {
+        return $this->id_utilisateur;
+    }
+
+    public function setIdUtilisateur(?Utilisateur $id_utilisateur): self
+    {
+        $this->id_utilisateur = $id_utilisateur;
+
+        return $this;
     }
 }
