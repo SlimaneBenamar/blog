@@ -2,7 +2,7 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
+        <title>High-Tech - {% block title %}Welcome!{% endblock %}</title>
         <link rel="stylesheet" href="css/bootstrap.min.css">
         {% block stylesheets %}
         
@@ -13,7 +13,7 @@
 
         <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
         <div class="container-fluid">
-            <a class="navbar-brand" href="#">Mon Blog</a>
+            <a class="navbar-brand" href="{{ path('Accueil')}}">High-Tech</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
             </button>
@@ -21,18 +21,16 @@
             <div class="collapse navbar-collapse" id="navbarColor01">
             <ul class="navbar-nav me-auto">
                 <li class="nav-item">
-                <a class="nav-link active" href="#">Accueil
-                    <span class="visually-hidden">(current)</span>
+                <a class="nav-link active" href="{{ path('Accueil')}}">Accueil
                 </a>
                 </li>
                 <li class="nav-item">
-                <a class="nav-link" href="#">Features</a>
-                </li>
-                <li class="nav-item">
-                <a class="nav-link" href="#">Pricing</a>
-                </li>
-                <li class="nav-item">
                 <a class="nav-link" href="#">A propos</a>
+                </li>
+            </ul>
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a href="#" class="nav-link">Mon Compte</a>
                 </li>
             </ul>
             </div>
