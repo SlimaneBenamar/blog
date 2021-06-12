@@ -18,10 +18,18 @@ class ArticleController extends AbstractController
     /**
      * @Route("/", name="article_index", methods={"GET"})
      */
-    public function index(ArticleRepository $articleRepository): Response
+    public function index(): Response
     {
+        //return $this->render('article/index.html.twig', [
+        //'articles' => $articleRepository->findAll(),
+        // Méthode findBy qui permet de récupérer les données avec des critères de filtre et de tri
+        $articles = $this->getDoctrine()->getRepository(Article::class)->findBy([], []);
+
         return $this->render('article/index.html.twig', [
-            'articles' => $articleRepository->findAll(),
+            'articles' => $articles,
+        ]);
+        return $this->render('blog.html.twig', [
+            'articles' => $articles,
         ]);
     }
 
@@ -83,7 +91,7 @@ class ArticleController extends AbstractController
      */
     public function delete(Request $request, Article $article): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$article->getId(), $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete' . $article->getId(), $request->request->get('_token'))) {
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($article);
             $entityManager->flush();

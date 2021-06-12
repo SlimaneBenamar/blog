@@ -23,10 +23,7 @@
                     <a href="{{ path('categories_edit', {'id': category.id}) }}">edit</a>
                 </td>
             </tr>
-        {% else %}
-            <tr>
-                <td colspan="3">no records found</td>
-            </tr>
+        
         {% endfor %}
         </tbody>
     </table>

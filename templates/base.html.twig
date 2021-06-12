@@ -3,7 +3,7 @@
     <head>
         <meta charset="UTF-8">
         <title>High-Tech - {% block title %}Welcome!{% endblock %}</title>
-        <link rel="stylesheet" href="css/bootstrap.min.css">
+        <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css')}}">
         {% block stylesheets %}
         
         {% endblock %}
@@ -29,7 +29,7 @@
                 </li>
             </ul>
             <ul class="navbar-nav ml-auto">
-                <li class="nav-item">
+                <li class="nav-item dropdown">
                     <a href="#" class="nav-link">Mon Compte</a>
                 </li>
             </ul>
@@ -40,8 +40,13 @@
 
 
 
-              
-        {% block body %}{% endblock %}
+        <div class="container mt-5"> 
+            <div class="row"> 
+                <div class="col">    
+                    {% block body %}{% endblock %}
+                </div>
+            </div>
+        </div>
 
         <script src="js/jquery.min.js"></script>
         <script src="js/popper.min.js"></script>
