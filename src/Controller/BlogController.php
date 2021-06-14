@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 
+use App\Entity\Article;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
@@ -14,6 +15,9 @@ class BlogController extends AbstractController
      */
     public function Blog()
     {
-        return $this->render('blog.html.twig');
+        $articles = $this->getDoctrine()->getRepository(Article::class)->findBy([], []);
+        return $this->render('blog.html.twig', [
+        'articles' => $articles,
+    ]);
     }
 }

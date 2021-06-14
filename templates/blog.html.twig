@@ -21,56 +21,26 @@
 
 
             <div class="row">
+                {% for article in articles %}
                 <div class="col-md-4">
-                    <div class="card mb-3">
+                    <div class="card border-info mb-3">
 
                         <img src="http://placehold.it/1000x400" alt="Image article 1" 
                         style="height: 200px; width: 100%; display: block">
 
                         <div class="card-body">
                             <h4 class="card-title">
-                                Article de ouf !
-                                {{ }}
+                                    {{ article.titre }}
                             </h4>
                             <p class="card-text">
-                                Lorem ipsum, ..............
+                                    {{ article.contenu|u.truncate(100, '...') }}
                             </p>
-                            <a href="#" class="btn btn-info">En savoir plus !</a>
+                            <a href="{{ path('article_show', {'id': article.id}) }}" class="btn btn-info">En savoir plus !</a>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-4">
-                    <div class="card mb-3">
-                        <img src="http://placehold.it/1000x400" alt="Image article 1" 
-                        style="height: 200px; width: 100%; display: block">
+                {% endfor %}
 
-                        <div class="card-body">
-                            <h4 class="card-title">
-                                Article de ouf !
-                            </h4>
-                            <p class="card-text">
-                                Lorem ipsum, ..............
-                            </p>
-                            <a href="#" class="btn btn-info">En savoir plus !</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="card mb-3">
-                        <img src="http://placehold.it/1000x400" alt="Image article 1" 
-                        style="height: 200px; width: 100%; display: block">
-
-                        <div class="card-body">
-                            <h4 class="card-title">
-                                Article de ouf !
-                            </h4>
-                            <p class="card-text">
-                                Lorem ipsum, ..............
-                            </p>
-                            <a href="#" class="btn btn-info">En savoir plus !</a>
-                        </div>
-                    </div>
-                </div>
             </div>
     </div>
 {% endblock %}

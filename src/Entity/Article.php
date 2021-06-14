@@ -22,7 +22,7 @@ class Article
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=100, unique=true)
+     * @ORM\Column(type="string", length=150, unique=true)
      */
     private $titre;
 

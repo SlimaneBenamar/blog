@@ -3,36 +3,27 @@
 {% block title %}Article{% endblock %}
 
 {% block body %}
-    <h1>Article</h1>
+    <div class="container justify-content-center">
+        <h1 style="font-width: bold;">{{ article.titre }}</h1>
+        <h6>Publié le : {{ article.dateCreation ? article.dateCreation|date('Y-m-d') : '' }},
+            Modifié le : {{ article.dateModification ? article.dateModification|date('Y-m-d') : '' }}</h6>
+        <h5 style="margin-top: 50px; text-justify: distribute;">{{ article.contenu }}</h5>
+    </div>
+    {# commentaires form #}
+    <div style="margin-top: 50px">
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ article.id }}</td>
-            </tr>
-            <tr>
-                <th>Titre</th>
-                <td>{{ article.titre }}</td>
-            </tr>
-            <tr>
-                <th>Contenu</th>
-                <td>{{ article.contenu }}</td>
-            </tr>
-            <tr>
-                <th>Date_creation</th>
-                <td>{{ article.dateCreation ? article.dateCreation|date('Y-m-d H:i:s') : '' }}</td>
-            </tr>
-            <tr>
-                <th>Date_modification</th>
-                <td>{{ article.dateModification ? article.dateModification|date('Y-m-d H:i:s') : '' }}</td>
-            </tr>
-        </tbody>
-    </table>
 
-    <a href="{{ path('article_index') }}">back to list</a>
-
-    <a href="{{ path('article_edit', {'id': article.id}) }}">edit</a>
-
-    {{ include('article/_delete_form.html.twig') }}
+        <div class="card">
+            <div class="card-body text-info">
+                <h4 class="card-title">Ajouter un commentaire</h4>
+                <h6 class="card-subtitle mb-2 text-muted">
+                    {% if app.user %}
+                        {{ app.user.username }}
+                    {% endif %}
+                </h6>
+                <textarea class="form-control w-50" id="textarea" rows="3"></textarea>
+                <button type="button" class="btn btn-info" for="textarea">Envoyer</button>
+            </div>
+        </div>
+    </div>
 {% endblock %}

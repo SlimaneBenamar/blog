@@ -1,9 +1,9 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}MotCle index{% endblock %}
+{% block title %}MotCle{% endblock %}
 
 {% block body %}
-    <h1>MotCle index</h1>
+    <h1>MotCle</h1>
 
     <table class="table">
         <thead>
@@ -19,17 +19,17 @@
                 <td>{{ mot_cle.id }}</td>
                 <td>{{ mot_cle.motCle }}</td>
                 <td>
-                    <a href="{{ path('mot_cle_show', {'id': mot_cle.id}) }}">show</a>
-                    <a href="{{ path('mot_cle_edit', {'id': mot_cle.id}) }}">edit</a>
+                    <a href="{{ path('mot_cle_show', {'id': mot_cle.id}) }}">Afficher</a>
+                    <a href="{{ path('mot_cle_edit', {'id': mot_cle.id}) }}">Editer</a>
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="3">no records found</td>
+                <td colspan="3">Liste vide</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
-    <a href="{{ path('mot_cle_new') }}">Create new</a>
+    <a href="{{ path('mot_cle_new') }}">Créer/a>
 {% endblock %}

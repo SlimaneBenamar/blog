@@ -1,13 +1,13 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Edit MotCle{% endblock %}
+{% block title %}Edition MotCle{% endblock %}
 
 {% block body %}
-    <h1>Edit MotCle</h1>
+    <h1>Edition MotCle</h1>
 
-    {{ include('mot_cle/_form.html.twig', {'button_label': 'Update'}) }}
+    {{ include('mot_cle/_form.html.twig', {'button_label': 'Mettre à jour'}) }}
 
-    <a href="{{ path('mot_cle_index') }}">back to list</a>
+    <a href="{{ path('mot_cle_index') }}">Retour</a>
 
     {{ include('mot_cle/_delete_form.html.twig') }}
 {% endblock %}
