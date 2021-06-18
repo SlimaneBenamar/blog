@@ -9,6 +9,8 @@
             Modifié le : {{ article.dateModification ? article.dateModification|date('Y-m-d') : '' }}</h6>
         <h5 style="margin-top: 50px; text-justify: distribute;">{{ article.contenu }}</h5>
     </div>
+
+
     {# commentaires form #}
     <div style="margin-top: 50px">
 
@@ -22,7 +24,8 @@
                     {% endif %}
                 </h6>
                 <textarea class="form-control w-50" id="textarea" rows="3"></textarea>
-                <button type="button" class="btn btn-info" for="textarea">Envoyer</button>
+                <input type="hidden" name="id" value="<?= $article['id'] ?>" />
+                <button type="button" class="btn btn-info">Commenter</button>
             </div>
         </div>
     </div>

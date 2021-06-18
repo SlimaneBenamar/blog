@@ -4,8 +4,10 @@
 
 {% block body %}
     <h1>Ajouter un Commentaire</h1>
-
-    {{ include('commentaire/_form.html.twig') }}
-
+    <div class="container">
+        <div class="form-group">
+            {{ include('commentaire/_form.html.twig') }}
+        </div>
+    </div>
     <a href="{{ path('commentaire_index') }}">Retour</a>
 {% endblock %}

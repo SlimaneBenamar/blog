@@ -17,16 +17,17 @@
             </p>
         </div>
 
-        <h2 class="h1 mt-3 mb-4">Nos articles stars</h2>
+        <h2 class="h1 mt-3 mb-4">Nos articles</h2>
 
 
             <div class="row">
                 {% for article in articles %}
                 <div class="col-md-4">
                     <div class="card border-info mb-3">
+                        {% if article.filename %}
+                            <img src="/images/articles/{{ article.filename }}" alt="card-img-top" style="width: auto; height: auto;">
+                        {% endif %}
 
-                        <img src="http://placehold.it/1000x400" alt="Image article 1" 
-                        style="height: 200px; width: 100%; display: block">
 
                         <div class="card-body">
                             <h4 class="card-title">

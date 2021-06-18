@@ -92,7 +92,6 @@ class Commentaire
     public function setIdUtilisateur(?Utilisateur $id_utilisateur): self
     {
         $this->id_utilisateur = $id_utilisateur;
-
         return $this;
     }
 }
